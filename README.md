@@ -11,4 +11,3 @@
 ## Aufgabe 1.5 - Digits
 
 ## Aufgabe 1.6 - Atmospheric Calculations
-
