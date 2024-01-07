@@ -2,9 +2,8 @@
 
 ## Aufgabe 1.1 - Number-to-Text
 
-- missing comments
+- gpt comments
 - missing optimisation
-- not possible for two digits
 
 ## Aufgabe 1.2 - Fibonacci-numbers
 
