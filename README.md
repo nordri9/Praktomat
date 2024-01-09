@@ -12,7 +12,8 @@
 
 ## Aufgabe 1.3 - Prime-factors
 
-- to do
+- error messages missing
+- missing/wrong comments
 
 ## Aufgabe 1.4 - Flight Distance
 

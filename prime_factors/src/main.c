@@ -2,6 +2,6 @@
 #include <stdio.h>
 
 int main() {
-  prime_factors();
+  print_number();
   return 0;
 }
