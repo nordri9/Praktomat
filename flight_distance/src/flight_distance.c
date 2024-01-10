@@ -46,8 +46,7 @@ int flight_distance() {
       "Departure Latitude", "Departure Longitude", "Arrival Latitude",
       "Arrival Longitude"};*/
 
-  printf("Please enter latitude in ° ’ ” and longitude in ° ’ ” for departure "
-         "and arrival:");
+  printf("Please enter latitude in ° ’ ” and longitude in ° ’ ” for departure and arrival: ");
 
   for (int i = 0; i < 4; ++i) {
 
