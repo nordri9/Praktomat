@@ -2,7 +2,7 @@
 #include <stdio.h>
 
 // Funktion zur Primfaktorzerlegung
-int prime_factors(int zahl) {
+unsigned int prime_factors(unsigned int zahl) {
   int i = 2;
   // Schleife zum Finden der Primfaktoren
   for (; i <= zahl; i++) {
@@ -15,8 +15,8 @@ int prime_factors(int zahl) {
   return i - 1;
 }
 
-int print_number() {
-  int num;
+unsigned print_number() {
+  unsigned num;
 
   // Benutzereingabe
   printf("Please enter the number which should be factorized: ");
