@@ -2,8 +2,7 @@ run_main: build ./build/flight_distance
 	./build/flight_distance
 
 ./build/flight_distance: ./build/flight_distance.o ./build/main.o
-	gcc ./build/flight_distance.o ./build/main.o -o ./build/flight_distance
-
+	gcc ./build/flight_distance.o ./build/main.o -o ./build/flight_distance -lm
 
 ./build/flight_distance.o: ./src/flight_distance.c
 	gcc -Wall -g -c ./src/flight_distance.c -o ./build/flight_distance.o
@@ -12,7 +11,7 @@ run_main: build ./build/flight_distance
 	gcc -Wall -g -c ./src/main.c -o ./build/main.o
 
 build: 
-	mkdir build
+	mkdir -p build
 
 clean:
 	rm -r build

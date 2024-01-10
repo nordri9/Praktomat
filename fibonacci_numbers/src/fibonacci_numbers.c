@@ -42,17 +42,6 @@ int fibonacci_numbers() {
      */
 
     } else {
-      /*
-      printf("\nSumm: %d \n", summ);
-      printf("Summ of the even numbers: %d \n", summ_even);
-      printf("Summ of the odd numbers: %d \n", summ_odd);
-
-        clock_t end_time = clock();
-        double time_taken = ((double)(end_time - start_time)) /
-      CLOCKS_PER_SEC;
-
-      printf("\nTime taken: %f seconds\n", time_taken);
-     */
       printf("The sum of all Fibonacci-numbers not exceeding the entered max "
              "of %d is %d (even) and %d (odd)\n",
              n, summ_even, summ_odd);

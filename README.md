@@ -14,13 +14,15 @@
 
 ## Aufgabe 1.3 - Prime-factors
 
-- error messages missing
 - missing/wrong comments
+- correct output
 - Principle test not tested
 
 ## Aufgabe 1.4 - Flight Distance
 
-- to do
+- missing/wrong comments
+- correct output
+- Principle test not tested
 
 ## Aufgabe 1.5 - Digits
 
