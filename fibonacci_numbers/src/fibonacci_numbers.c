@@ -1,6 +1,6 @@
 #include "fibonacci_numbers.h"
 #include <stdio.h>
-#include <time.h>
+//#include <time.h>
 
 int fibonacciRecursive(int n) {
   if (n <= 1) {

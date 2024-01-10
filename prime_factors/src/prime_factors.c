@@ -4,17 +4,16 @@
 // Funktion zur Primfaktorzerlegung
 int prime_factors(int zahl) {
   int i = 2;
-  printf("Primfaktoren von %d sind: ", zahl);
   // Schleife zum Finden der Primfaktoren
-  for (;i <= zahl; i++) {
+  for (; i <= zahl; i++) {
     while (zahl % i == 0) {
       //printf("%d ", i);
       zahl /= i;
     }
   }
 
-  //printf("highest factor: %d\n", i-1);
-  return i-1;
+  // printf("highest factor: %d\n", i-1);
+  return i - 1;
 }
 
 int print_number() {
@@ -32,7 +31,6 @@ int print_number() {
 
   // Primfaktorzerlegung aufrufen
   printf("Highest prime factor of %d is %d\n", num, prime_factors(num));
-  
 
   return 0;
 }
