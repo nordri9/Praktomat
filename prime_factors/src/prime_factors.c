@@ -22,7 +22,7 @@ unsigned long long int print_number() {
   printf("Please enter the number which should be factorized: ");
   scanf("%lld", &num);
 
-  if (num <= 2) {
+  if (num <= 3) {
     printf("The entered number is invalid!\n");
     return 1;
   }
