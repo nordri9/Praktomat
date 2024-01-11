@@ -1,7 +1,7 @@
-#include "flight_distance.h"
+#include "digits.h"
 #include <stdio.h>
 
-int flight_distance() {
+int digits() {
 
   return 0; // Erfolgreich beendet
 }
