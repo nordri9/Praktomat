@@ -48,16 +48,16 @@ float stagnation_temperature(char latitude, char longitude,
 
 float stagnation_pressure(unsigned int pressure_hpa, char latitude,
                           char longitude, int temperature_celsius) {
-  float ρ0 =
+  float roh0 =
       p(pressure_hpa) /
       (R * stagnation_temperature(latitude, longitude, temperature_celsius));
 
-  return ρ0;
+  return roh0;
 }
 
 float actual_density(unsigned int pressure_hpa, char latitude, char longitude,
                      int temperature_celsius) {
-  float ρ =
+  float roh =
       stagnation_pressure(pressure_hpa, latitude, longitude,
                           temperature_celsius) *
       pow((1 - (n - 1) / n *
@@ -65,12 +65,12 @@ float actual_density(unsigned int pressure_hpa, char latitude, char longitude,
                                                     temperature_celsius))) *
                    location_hight(latitude, longitude)),
           (1 / (n - 1)));
-  return ρ;
+  return roh;
 }
 
 float density_altitude(unsigned int pressure_hpa, char latitude, char longitude,
                        int temperature_celsius) {
-  float H_of_ρ =
+  float H_of_roh =
 
       (pow((actual_density(pressure_hpa, latitude, longitude,
                            temperature_celsius) /
@@ -85,7 +85,7 @@ float density_altitude(unsigned int pressure_hpa, char latitude, char longitude,
 
       ;
 
-  return H_of_ρ;
+  return H_of_roh;
 }
 
 int atmospheric_calculations() {
