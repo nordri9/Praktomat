@@ -5,6 +5,8 @@
 #define g 9.81
 #define R 287
 #define n 1.235
+#define T0_constant 288.15
+#define roh0_constant 1.225
 
 float T(int temperature) {
   float temperature_kelvin;
@@ -74,16 +76,11 @@ float density_altitude(unsigned int pressure_hpa, char latitude, char longitude,
 
       (pow((actual_density(pressure_hpa, latitude, longitude,
                            temperature_celsius) /
-            stagnation_pressure(pressure_hpa, latitude, longitude,
-                                temperature_celsius)),
+            roh0_constant),
            (n - 1)) -
        1)
 
-      * ((-1 * n) / (n - 1)) *
-      ((R * stagnation_temperature(latitude, longitude, temperature_celsius)) /
-       g)
-
-      ;
+      * ((-1 * n) / (n - 1)) * ((R * T0_constant) / g);
 
   return H_of_roh;
 }
