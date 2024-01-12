@@ -1,33 +1,39 @@
 #include "prime_factors.h"
 #include <stdio.h>
 
-// Funktion zur Primfaktorzerlegung
-unsigned long long int prime_factors(unsigned long long int zahl) {
-  unsigned long long int i = 2;
-  // Schleife zum Finden der Primfaktoren
+// Function to calculate the highest prime factor of a given number
+unsigned int prime_factors(unsigned int zahl) {
+  unsigned int i = 2;
+
+  // Loop through potential prime factors starting from 2
   for (; i <= zahl; i++) {
+    // Check if 'i' is a factor of the number
     while (zahl % i == 0) {
-      // printf("%d ", i);
+      // Divide the number by 'i' as long as it's a factor
       zahl /= i;
     }
   }
 
+  // 'i' will be one more than the highest prime factor found
   return i - 1;
 }
 
-unsigned long long int print_number() {
-  unsigned long long int num;
+// Function to take user input and print the highest prime factor
+unsigned int print_number() {
+  unsigned int num;
 
-  // Benutzereingabe
+  // Prompt the user to enter a number
   printf("Please enter the number which should be factorized: ");
-  scanf("%lld", &num);
+  scanf("%u", &num);
 
+  // Check if the entered number is less than or equal to 3
   if (num <= 3) {
     printf("The entered number is invalid!\n");
-    return 1;
+    return 1; // Return 1 to indicate an error
   }
-  // Primfaktorzerlegung aufrufen
-  printf("Highest prime factor of %lld is %lld\n", num, prime_factors(num));
+
+  // Print the highest prime factor of the entered number
+  printf("Highest prime factor of %u is %u\n", num, prime_factors(num));
 
   return 0;
 }

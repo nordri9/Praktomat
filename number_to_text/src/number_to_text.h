@@ -1,8 +1,7 @@
 #ifndef NUMBER_TO_TEXT_H
 #define NUMBER_TO_TEXT_H
-
-//void printDigit(int digit, int hundreds, int tens, int ones);
-void convertToWords(int number);
+void print_digits(int decimal_place);
+void convert_to_words(int number);
 int number_to_text();
 
 #endif
