@@ -1,6 +1,7 @@
 #include "atmospheric_calculations.h"
 #include <math.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 #define g 9.81
 #define R 287
@@ -29,14 +30,14 @@ int location_hight(char latitude, char longitude) {
       {48, 9, 388}, {52, 13, 37}, {48, 11, 453}, {50, 8, 110}};
 
   for (int i = 0; i < 4; ++i) {
-    if (latitude == locations[i].latitude ||
+    if (latitude == locations[i].latitude &&
         longitude == locations[i].longitude) {
       return locations[i].height;
     }
   }
 
-  printf("Wrong coordinates entered!");
-  return 1;
+  printf("Wrong coordinates entered!\n");
+  exit(0);
 }
 
 float stagnation_temperature(char latitude, char longitude,
@@ -116,8 +117,7 @@ int atmospheric_calculations() {
   */
 
   printf(
-      "\nT_0 = %fK, rho_0 = %fkg/m3, rho = %fkg/m3, H = "
-      "%fm\n",
+      "\nT_0 = %fK, rho_0 = %fkg/m³, rho = %fkg/m³, H = %fm\n",
       stagnation_temperature(latitude, longitude, temperature_celsius),
       stagnation_pressure(pressure_hpa, latitude, longitude,
                           temperature_celsius),
