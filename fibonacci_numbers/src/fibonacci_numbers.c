@@ -26,7 +26,7 @@ int fibonacci_numbers() {
   if (scanf("%d", &n) < 1 || n < 3) {
     // If the input is invalid or less than 3, prompt the user to enter a valid
     // number
-    printf("Enter a number that is 3 or greater.\n");
+    printf("Enter a number that is 3 or greater.");
     return 1;
   }
 
@@ -34,7 +34,8 @@ int fibonacci_numbers() {
   for (i = 2; i < n; i++) {
     // Check if the current Fibonacci number is less than the maximum value
     if (fibonacciRecursive(i) < n) {
-      // Update sums based on whether the current Fibonacci number is even or odd
+      // Update sums based on whether the current Fibonacci number is even or
+      // odd
       if (fibonacciRecursive(i) % 2 == 0) {
         summ_even = summ_even + fibonacciRecursive(i);
       } else {
@@ -45,9 +46,10 @@ int fibonacci_numbers() {
       summ = summ + fibonacciRecursive(i);
 
     } else {
-      // If the current Fibonacci number exceeds the maximum value, print the results
+      // If the current Fibonacci number exceeds the maximum value, print the
+      // results
       printf("The sum of all Fibonacci numbers not exceeding the entered max "
-             "of %d is %d (even) and %d (odd)\n",
+             "of %d is %d (even) and %d (odd)",
              n, summ_even, summ_odd);
       return 0;
     }
