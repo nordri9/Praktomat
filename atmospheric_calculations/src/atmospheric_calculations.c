@@ -116,7 +116,7 @@ int atmospheric_calculations() {
   */
 
   printf(
-      "\nT0 = %fK, rho0 = %fkg/m3, rho = %fkg/m3, H = "
+      "\nT_0 = %fK, rho_0 = %fkg/m3, rho = %fkg/m3, H = "
       "%fm\n",
       stagnation_temperature(latitude, longitude, temperature_celsius),
       stagnation_pressure(pressure_hpa, latitude, longitude,
