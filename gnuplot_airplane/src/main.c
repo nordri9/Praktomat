@@ -12,9 +12,7 @@ int main()
 
 int generate_plot()
 {
-  GnuPlotOpen("Sine Wave", "sine_wave");
-
-  // Generate sine wave points and plot them
+  GnuPlotOpen("Airplane", "airplane");
 
   float x, y;
   for (int i = 0; i < 2; ++i)
