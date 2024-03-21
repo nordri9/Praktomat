@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "gnuplot_airplane.h"
+#include "gnuplot.h"
 
 FILE *gnu;
 

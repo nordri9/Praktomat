@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <math.h>
-#include "gnuplot_airplane.h"
+#include "gnuplot.h"
 
 int generate_plot()
 {

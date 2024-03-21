@@ -1,4 +1,4 @@
-#include "gnuplot_airplane.h"
+#include "gnuplot.h"
 
 int main()
 {
