@@ -1,6 +1,7 @@
 #include "gnuplot_airplane.h"
 
-int main() {
+int main()
+{
   generate_plot();
   return 0;
 }
