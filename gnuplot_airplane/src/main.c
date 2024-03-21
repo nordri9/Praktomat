@@ -1,6 +1,6 @@
-#include <stdio.h>   // Standard input-output library
-#include <math.h>    // Math library for mathematical functions
-#include "gnuplot.h" // Custom header file for GNU plot functions
+#include <stdio.h>
+#include <math.h>
+#include "gnuplot.h"
 
 // Function prototype declaration
 int generate_plot();
@@ -87,5 +87,5 @@ int generate_plot()
 
   GnuPlotClose(); // Close the GNU plot window
 
-  return 0; // Return 0 to indicate successful execution
+  return 0; // successful execution
 }
