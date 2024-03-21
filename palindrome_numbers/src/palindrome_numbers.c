@@ -1,6 +1,5 @@
-#include "palindrome_numbers.h" // Including header file for function prototypes
-
-#include <stdio.h> // Including standard input/output library
+#include <stdio.h>
+#include "palindrome_numbers.h"
 
 // Function to check if a number is a palindrome
 int isPalindrome(int n) {
