@@ -32,7 +32,7 @@ int generate_plot()
     }
     else
     {
-      mirror = -1; // Mirror along y-axis
+      mirror = -1; // Mirror along x-axis
     }
 
     // Plot first segment of the curve
