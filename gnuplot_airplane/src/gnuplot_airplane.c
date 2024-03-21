@@ -2,6 +2,8 @@
 #include <math.h>
 #include "gnuplot.h"
 
+// int generate_plot();
+
 int generate_plot()
 {
     Gnuplotopen("Sine Wave", "sine_wave");
