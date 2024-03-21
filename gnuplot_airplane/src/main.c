@@ -12,7 +12,7 @@ int main()
 
 int generate_plot()
 {
-  Gnuplotopen("Sine Wave", "sine_wave");
+  GnuPlotOpen("Sine Wave", "sine_wave");
 
   // Generate sine wave points and plot them
 
