@@ -1,27 +1,67 @@
-// data_structures.h
 #ifndef DATA_STRUCTURES_H
 #define DATA_STRUCTURES_H
 
-// data_structure.h
-#ifndef DATA_STRUCTURE_H
-#define DATA_STRUCTURE_H
-
-typedef struct Coordinate {
+typedef struct Coordinate
+{
     double degree;
     double minute;
     double second;
 } Coordinate;
 
-typedef struct Airport {
-    char icao[4];
-    char iata[3];
-    Coordinate latitude;
-    Coordinate longitude;
+typedef struct Airport
+{
+    char icao[5];
+    char iata[4];
+    struct Coordinate latitude;
+    struct Coordinate longitude;
     float heightAMSL;
 } Airport;
 
-// ... Define other structures (Time, FlightPath, Airplane, Airline, FMS) here
+typedef struct Time
+{
+    unsigned char hour;
+    unsigned char minute;
+} Time;
+
+typedef struct FlightPath {
+    char flightPathName[32];
+    struct Airport *pDepartureAirport;
+    struct Airport *pArrivalAirport;
+    struct Time departure;
+    struct Time arrival;
+}FlightPath;
+
+typedef struct Airplane {
+    char airplaneName[32];
+    char airVehicleRegestriation[16];
+    struct FlightPath *pFlightPath;
+    unsigned int cntFlightPath;
+}Airplane;
+
+typedef struct Airline {
+    char airlineName[32];
+    struct Airplane *pAirplane;
+    unsigned int cntAirplane;
+}Airline;
+
+typedef struct FMS {
+    struct Airline *pAirline;
+    unsigned int cntAirline;
+}FMS;
 
 
+void initCoordinate(Coordinate *c, double degree, double minute, double second);
+void initAirport(Airport *a, const char *icao, const char *iata, double latDegree, double latMinute, double latSecond, double lonDegree, double lonMinute, double lonSecond, float heightAMSL);
+void initTime(Time *t, unsigned char hour, unsigned char minute);
+void initFlightPath(FlightPath *fp, const char *flightPathName, Airport *pDepartureAirport, Airport *pArrivalAirport, unsigned char depHour, unsigned char depMinute, unsigned char arrHour, unsigned char arrMinute);
+void initAirplane(Airplane *aplane, char *airplaneName, char *airVehicleRegestriation, FlightPath *pFlightPath, unsigned int cntFlightPath);
+void initAirline(Airline *al, char *airlineName, Airplane *pAirplane, unsigned int cntAirplane);
+void initFMS(FMS *fms, Airline *pAirline, unsigned int cntAirline);
 
+
+void printCoordinate(const Coordinate *c);
+void printAirport(const Airport *a);
+void printTime(const Time *t);
+
+int datatest();
 #endif
