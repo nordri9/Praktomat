@@ -17,14 +17,15 @@ int fms_data_input()
     initAirport(&stuttgart, "EDDS", "STR", 48, 41, 23, 9, 13, 18, 389);
     initAirport(&munich, "EDDM", "MUC", 48, 21, 14, 11, 47, 10, 453);
 
-    Time testtime;
+    Time 0300,0415,0800,1000,1012,1015,1130,1300,1310,1315,1430,1500,1512,1530,1630,1700,1800,1830,2030,2045,2145,2200,2230,2330,2400;
 
-    initTime(&testtime, 13, 30);
-    printTime(&testtime);
+    initTime(&flighttime1, 13, 30);
+    printTime(&flighttime1);
 
-    FlightPath MUC_HAM, HAM_FRA, FRA_HUC, MUC_HAM, MUC_DUS, DUS_BER, BER_CGN, CGN_MUC, HAM_STR, STR_BER, BER_FRA, FRA_HAM;
+    FlightPath MUC_HAM, HAM_FRA; //, FRA_HUC, MUC_HAM, MUC_DUS, DUS_BER, BER_CGN, CGN_MUC, HAM_STR, STR_BER, BER_FRA, FRA_HAM;
     initFlightPath(&MUC_HAM, "muc_ham", &munich, &hamburg, testtime.hour, testtime.minute, testtime.hour, testtime.minute);
-    
+initFlightPath(&HAM_FRA, "ham_fra", &hamburg,&frankfurt, testtime.hour, testtime.minute, testtime.hour, testtime.minute);)
+
     
      /*
          // Array of airport pointers
