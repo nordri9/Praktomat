@@ -94,6 +94,7 @@ void printArrivalTime(Time *t)
 
 void printFlightPath(FlightPath *fp)
 {
+  printf("   %s|", fp->flightPathName);
   // printf("Flight Path Name: %s\n", fp->flightPathName);
   // printf("Departure Airport:\n");
   printAirport(fp->pDepartureAirport);
@@ -107,30 +108,22 @@ void printFlightPath(FlightPath *fp)
 
 void printAirplane(Airplane *aplane, int i, char airlineName[32])
 {
-  // printf("Airplane Name: %s\n", aplane->airplaneName);
-  // printf("Air Vehicle Registration: %s\n", aplane->airVehicleRegestriation);
   for (unsigned int i = 0; i < aplane->cntFlightPath; i++)
   {
-    // printf("Flight Path %u:\n", i + 1);
     printf(" %s|", airlineName);
-    printf("Flight No.|");
     printFlightPath(&aplane->pFlightPath[i]);
     printf("  %s\n", aplane->airVehicleRegestriation);
   }
-
-
 }
 
 void printAirline(Airline *al)
 {
- // printf(" %s|", al->airlineName);
- // printf("Flight No.|");
+  // printf(" %s|", al->airlineName);
+  // printf("Flight No.|");
   for (unsigned int i = 0; i < al->cntAirplane; i++)
   {
 
-    // printf("Airplane %u:\n", i + 1);
     printAirplane(&al->pAirplane[i], i, al->airlineName);
-    // return i;
   }
 }
 
@@ -139,24 +132,8 @@ void Generate_Time_Table(FMS *pFMS)
 
   printf("   Airline|Flight No.|from|  to|Departure| Arrival|Airplane\n");
   printf("----------|----------|----|----|---------|--------|--------\n");
-  for (unsigned int i = 0; i < pFMS->cntAirline+2; i++)
+  for (unsigned int i = 0; i < pFMS->cntAirline; i++)
   {
-    // printf("Airline %u:\n", i + 1);
     printAirline(&pFMS->pAirline[i]);
   }
 }
-
-/*
-// Definition of the data function
-int datatest()
-{
-  Coordinate test_c;
-  initCoordinate(&test_c, 40.0, 20.0, 30.0);
-  printCoordinate(&test_c);
-
-  Airport test_a;
-  initAirport(&test_a, "ABCD", "ABC", 33.9425, 118.4081, 0.0, -118.4081, 0.0, 0.0, 125.0);
-  printAirport(&test_a);
-  return 0;
-}
-*/

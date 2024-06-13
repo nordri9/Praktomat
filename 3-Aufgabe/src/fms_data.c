@@ -47,21 +47,21 @@ int fms_data_input()
 
     FlightPath MUC_HAM1, HAM_FRA1, FRA_HUC, MUC_HAM2, HAM_MUC, MUC_DUS1, DUS_BER, BER_CGN, CGN_MUC, MUC_DUS2, HAM_STR, STR_BER, BER_FRA, FRA_HAM, HAM_FRA2;
 
-    initFlightPath(&MUC_HAM1, "muc_ham1", &munich, &hamburg, t1130.hour, t1130.minute, t1430.hour, t1430.minute);
-    initFlightPath(&HAM_FRA1, "ham_fra1", &hamburg, &frankfurt, t1530.hour, t1530.minute, t1630.hour, t1630.minute);
-    initFlightPath(&FRA_HUC, "fra_huc", &frankfurt, &munich, t1830.hour, t1830.minute, t2030.hour, t2030.minute);
-    initFlightPath(&MUC_HAM2, "muc_ham2", &munich, &hamburg, t2045.hour, t2045.minute, t2200.hour, t2200.minute);
-    initFlightPath(&HAM_MUC, "ham_muc", &hamburg, &munich, t2230.hour, t2230.minute, t2330.hour, t2330.minute);
-    initFlightPath(&MUC_DUS1, "muc_dus1", &munich, &dusseldorf, t0300.hour, t0300.minute, t0415.hour, t0415.minute);
-    initFlightPath(&DUS_BER, "dus_ber", &dusseldorf, &berlin, t0800.hour, t0800.minute, t1000.hour, t1000.minute);
-    initFlightPath(&BER_CGN, "ber_cgn", &berlin, &cologne, t1012.hour, t1012.minute, t1015.hour, t1015.minute);
-    initFlightPath(&CGN_MUC, "cgn_muc", &cologne, &munich, t1800.hour, t1800.minute, t2030.hour, t2030.minute);
-    initFlightPath(&MUC_DUS2, "muc_dus2", &munich, &dusseldorf, t2145.hour, t2145.minute, t2330.hour, t2330.minute);
-    initFlightPath(&HAM_STR, "ham_str", &hamburg, &stuttgart, t0800.hour, t0800.minute, t1512.hour, t1512.minute);
-    initFlightPath(&STR_BER, "str_ber", &stuttgart, &berlin, t1015.hour, t1015.minute, t1300.hour, t1300.minute);
-    initFlightPath(&BER_FRA, "ber_fra", &berlin, &frankfurt, t1310.hour, t1310.minute, t1500.hour, t1500.minute);
-    initFlightPath(&FRA_HAM, "fra_ham", &frankfurt, &hamburg, t1512.hour, t1512.minute, t1700.hour, t1700.minute);
-    initFlightPath(&HAM_FRA2, "ham_fra2", &hamburg, &frankfurt, t2200.hour, t2200.minute, t2400.hour, t2400.minute);
+    initFlightPath(&MUC_HAM1, "LH 2147", &munich, &hamburg, t1130.hour, t1130.minute, t1430.hour, t1430.minute);
+    initFlightPath(&HAM_FRA1, "LH 2147", &hamburg, &frankfurt, t1530.hour, t1530.minute, t1630.hour, t1630.minute);
+    initFlightPath(&FRA_HUC, "LH 2147", &frankfurt, &munich, t1830.hour, t1830.minute, t2030.hour, t2030.minute);
+    initFlightPath(&MUC_HAM2, "LH 2147", &munich, &hamburg, t2045.hour, t2045.minute, t2200.hour, t2200.minute);
+    initFlightPath(&HAM_MUC, "LH 2147", &hamburg, &munich, t2230.hour, t2230.minute, t2330.hour, t2330.minute);
+    initFlightPath(&MUC_DUS1, "EW 5953", &munich, &dusseldorf, t0300.hour, t0300.minute, t0415.hour, t0415.minute);
+    initFlightPath(&DUS_BER, "EW 5953", &dusseldorf, &berlin, t0800.hour, t0800.minute, t1000.hour, t1000.minute);
+    initFlightPath(&BER_CGN, "EW 5953", &berlin, &cologne, t1012.hour, t1012.minute, t1315.hour, t1315.minute);
+    initFlightPath(&CGN_MUC, "EW 5953", &cologne, &munich, t1800.hour, t1800.minute, t2030.hour, t2030.minute);
+    initFlightPath(&MUC_DUS2, "EW 5953", &munich, &dusseldorf, t2145.hour, t2145.minute, t2330.hour, t2330.minute);
+    initFlightPath(&HAM_STR, "X3 2174", &hamburg, &stuttgart, t0800.hour, t0800.minute, t1000.hour, t1000.minute);
+    initFlightPath(&STR_BER, "X3 2174", &stuttgart, &berlin, t1015.hour, t1015.minute, t1300.hour, t1300.minute);
+    initFlightPath(&BER_FRA, "X3 2174", &berlin, &frankfurt, t1310.hour, t1310.minute, t1500.hour, t1500.minute);
+    initFlightPath(&FRA_HAM, "X3 2174", &frankfurt, &hamburg, t1512.hour, t1512.minute, t1700.hour, t1700.minute);
+    initFlightPath(&HAM_FRA2, "X3 2174", &hamburg, &frankfurt, t2200.hour, t2200.minute, t2400.hour, t2400.minute);
 
     Airplane a380, a320, b747;
 
@@ -70,25 +70,20 @@ int fms_data_input()
     FlightPath b747_flightpaths[] = {HAM_STR, STR_BER, BER_FRA, FRA_HAM, HAM_FRA2};
 
     initAirplane(&a380, "A380", "D-AIMA", &a380_flightpaths[0], sizeof(a380_flightpaths) / sizeof(a380_flightpaths[0]));
-    initAirplane(&a320, "A320", "D-AIMA", &a320_flightpaths[0], sizeof(a320_flightpaths) / sizeof(a320_flightpaths[0]));
-    initAirplane(&b747, "B747", "D-AIMA", &b747_flightpaths[0], sizeof(b747_flightpaths) / sizeof(b747_flightpaths[0]));
+    initAirplane(&a320, "A320", "D-AIAB", &a320_flightpaths[0], sizeof(a320_flightpaths) / sizeof(a320_flightpaths[0]));
+    initAirplane(&b747, "B747", "D-ABCD", &b747_flightpaths[0], sizeof(b747_flightpaths) / sizeof(b747_flightpaths[0]));
 
-    //   printAirplane(&a380);
-    Airline Lufthansa, EuroWings, TUIfly;
+    Airline Lufthansa, EuroWings, TUIFly;
 
     initAirline(&Lufthansa, "Lufthansa", &a380, 1);
-    initAirline(&EuroWings, "EuroWings", &a320, 2);
-    initAirline(&TUIfly, "   TUIfly", &b747, 3);
+    initAirline(&EuroWings, "EuroWings", &a320, 1);
+    initAirline(&TUIFly, "   TUIFly", &b747, 1);
 
-    // printAirline(&Lufthansa);
-    FMS section1, section2, section3;
-    initFMS(&section1, &Lufthansa, 1);
-    initFMS(&section2, &EuroWings, 1);
+    Airline airlines[] = {Lufthansa, EuroWings, TUIFly};
 
-    initFMS(&section3, &TUIfly, 1);
+    FMS section1;
+    initFMS(&section1, airlines, 3);
 
-    // Generate and print the time table
     Generate_Time_Table(&section1);
-
     return 0;
 }

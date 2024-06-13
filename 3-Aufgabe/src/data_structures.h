@@ -23,32 +23,35 @@ typedef struct Time
     unsigned char minute;
 } Time;
 
-typedef struct FlightPath {
+typedef struct FlightPath
+{
     char flightPathName[32];
     struct Airport *pDepartureAirport;
     struct Airport *pArrivalAirport;
     struct Time departure;
     struct Time arrival;
-}FlightPath;
+} FlightPath;
 
-typedef struct Airplane {
+typedef struct Airplane
+{
     char airplaneName[32];
     char airVehicleRegestriation[32];
     struct FlightPath *pFlightPath;
     unsigned int cntFlightPath;
-}Airplane;
+} Airplane;
 
-typedef struct Airline {
+typedef struct Airline
+{
     char airlineName[32];
     struct Airplane *pAirplane;
     unsigned int cntAirplane;
-}Airline;
+} Airline;
 
-typedef struct FMS {
+typedef struct FMS
+{
     struct Airline *pAirline;
     unsigned int cntAirline;
-}FMS;
-
+} FMS;
 
 void initCoordinate(Coordinate *c, double degree, double minute, double second);
 void initAirport(Airport *a, const char *icao, const char *iata, double latDegree, double latMinute, double latSecond, double lonDegree, double lonMinute, double lonSecond, float heightAMSL);
@@ -57,7 +60,6 @@ void initFlightPath(FlightPath *fp, const char *flightPathName, Airport *pDepart
 void initAirplane(Airplane *aplane, char *airplaneName, char *airVehicleRegestriation, FlightPath *pFlightPath, unsigned int cntFlightPath);
 void initAirline(Airline *al, char *airlineName, Airplane *pAirplane, unsigned int cntAirplane);
 void initFMS(FMS *fms, Airline *pAirline, unsigned int cntAirline);
-
 
 void printCoordinate(Coordinate *c);
 void printDepartureTime(Time *t);
