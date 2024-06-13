@@ -68,67 +68,80 @@ void initFMS(FMS *fms, Airline *pAirline, unsigned int cntAirline)
 
 void printCoordinate(Coordinate *c)
 {
-  printf("Coordinate: %lf° %lf' %lf\"\n", c->degree, c->minute, c->second);
+  // printf("Coordinate: %lf° %lf' %lf\"\n", c->degree, c->minute, c->second);
 }
 
 void printAirport(Airport *aport)
 {
-  printf("Airport ICAO: %s\n", aport->icao);
-  printf("Airport IATA: %s\n", aport->iata);
-  printf("Latitude: ");
-  printCoordinate(&aport->latitude);
-  printf("Longitude: ");
+  // printf("Airport ICAO: %s\n", aport->icao);
+  printf(" %s|", aport->iata);
+  // printf("Latitude: ");
+  // printCoordinate(&aport->latitude);
+  // printf("Longitude: ");
   printCoordinate(&aport->longitude);
-  printf("Height AMSL: %f\n", aport->heightAMSL);
+  // printf("Height AMSL: %f\n", aport->heightAMSL);
 }
 
-void printTime(Time *t)
+void printDepartureTime(Time *t)
 {
-  printf("Time: %02u:%02u\n", t->hour, t->minute);
+  printf("    %02u:%02u|", t->hour, t->minute);
+}
+
+void printArrivalTime(Time *t)
+{
+  printf("   %02u:%02u|", t->hour, t->minute);
 }
 
 void printFlightPath(FlightPath *fp)
 {
-  printf("Flight Path Name: %s\n", fp->flightPathName);
-  printf("Departure Airport:\n");
+  // printf("Flight Path Name: %s\n", fp->flightPathName);
+  // printf("Departure Airport:\n");
   printAirport(fp->pDepartureAirport);
-  printf("Arrival Airport:\n");
+  // printf("Arrival Airport:\n");
   printAirport(fp->pArrivalAirport);
-  printf("Departure Time: ");
-  printTime(&fp->departure);
-  printf("Arrival Time: ");
-  printTime(&fp->arrival);
+  // printf("Departure Time: ");
+  printDepartureTime(&fp->departure);
+  // printf("Arrival Time: ");
+  printArrivalTime(&fp->arrival);
 }
 
-void printAirplane(Airplane *aplane)
+void printAirplane(Airplane *aplane, int i, char airlineName[32])
 {
-  printf("Airplane Name: %s\n", aplane->airplaneName);
-  printf("Air Vehicle Registration: %s\n", aplane->airVehicleRegestriation);
+  // printf("Airplane Name: %s\n", aplane->airplaneName);
+  // printf("Air Vehicle Registration: %s\n", aplane->airVehicleRegestriation);
   for (unsigned int i = 0; i < aplane->cntFlightPath; i++)
   {
-    printf("Flight Path %u:\n", i + 1);
+    // printf("Flight Path %u:\n", i + 1);
+    printf(" %s|", airlineName);
+    printf("Flight No.|");
     printFlightPath(&aplane->pFlightPath[i]);
+    printf("  %s\n", aplane->airVehicleRegestriation);
   }
+
+
 }
 
 void printAirline(Airline *al)
 {
-  printf("Airline Name: %s\n", al->airlineName);
+ // printf(" %s|", al->airlineName);
+ // printf("Flight No.|");
   for (unsigned int i = 0; i < al->cntAirplane; i++)
   {
-    printf("Airplane %u:\n", i + 1);
-    printAirplane(&al->pAirplane[i]);
+
+    // printf("Airplane %u:\n", i + 1);
+    printAirplane(&al->pAirplane[i], i, al->airlineName);
+    // return i;
   }
 }
 
 void Generate_Time_Table(FMS *pFMS)
 {
-  
-    printf("   Airline|Flight No.|from|  to|Departure| Arrival|Airplane\n");
-    printf("----------|----------|----|----|---------|--------|--------\n");
-  for (unsigned int i = 0; i < pFMS->cntAirline; i++)
+
+  printf("   Airline|Flight No.|from|  to|Departure| Arrival|Airplane\n");
+  printf("----------|----------|----|----|---------|--------|--------\n");
+  for (unsigned int i = 0; i < pFMS->cntAirline+2; i++)
   {
-    printf("Airline %u:\n", i + 1);
+    // printf("Airline %u:\n", i + 1);
     printAirline(&pFMS->pAirline[i]);
   }
 }

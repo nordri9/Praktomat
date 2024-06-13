@@ -45,8 +45,6 @@ int fms_data_input()
     initTime(&t2330, 23, 30);
     initTime(&t2400, 24, 0);
 
-    printTime(&t1015);
-
     FlightPath MUC_HAM1, HAM_FRA1, FRA_HUC, MUC_HAM2, HAM_MUC, MUC_DUS1, DUS_BER, BER_CGN, CGN_MUC, MUC_DUS2, HAM_STR, STR_BER, BER_FRA, FRA_HAM, HAM_FRA2;
 
     initFlightPath(&MUC_HAM1, "muc_ham1", &munich, &hamburg, t1130.hour, t1130.minute, t1430.hour, t1430.minute);
@@ -79,8 +77,8 @@ int fms_data_input()
     Airline Lufthansa, EuroWings, TUIfly;
 
     initAirline(&Lufthansa, "Lufthansa", &a380, 1);
-    initAirline(&EuroWings, "EuroWings", &a320, 1);
-    initAirline(&TUIfly, "TUIfly", &b747, 1);
+    initAirline(&EuroWings, "EuroWings", &a320, 2);
+    initAirline(&TUIfly, "   TUIfly", &b747, 3);
 
     // printAirline(&Lufthansa);
     FMS section1, section2, section3;

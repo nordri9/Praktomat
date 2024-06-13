@@ -60,10 +60,11 @@ void initFMS(FMS *fms, Airline *pAirline, unsigned int cntAirline);
 
 
 void printCoordinate(Coordinate *c);
-void printTime(Time *t);
+void printDepartureTime(Time *t);
+void printArrivalTime(Time *t);
 void printAirport(Airport *a);
 void printFlightPath(FlightPath *fp);
-void printAirplane(Airplane *aplane);
+void printAirplane(Airplane *aplane, int i, char airlineName[32]);
 void printAirline(Airline *al);
 void Generate_Time_Table(FMS *pFMS);
 
