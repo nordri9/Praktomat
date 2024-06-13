@@ -47,90 +47,50 @@ int fms_data_input()
 
     printTime(&t1015);
 
-    FlightPath  HAM_FRA, FRA_HUC, HAM_MUC, MUC_DUS, DUS_BER, BER_CGN, CGN_MUC, HAM_STR, STR_BER, BER_FRA, FRA_HAM;
-    initFlightPath(&HAM_FRA, "ham_fra", &hamburg, &frankfurt, t1530.hour, t1530.minute, t1630.hour, t1630.minute);
+    FlightPath MUC_HAM1, HAM_FRA1, FRA_HUC, MUC_HAM2, HAM_MUC, MUC_DUS1, DUS_BER, BER_CGN, CGN_MUC, MUC_DUS2, HAM_STR, STR_BER, BER_FRA, FRA_HAM, HAM_FRA2;
+
+    initFlightPath(&MUC_HAM1, "muc_ham1", &munich, &hamburg, t1130.hour, t1130.minute, t1430.hour, t1430.minute);
+    initFlightPath(&HAM_FRA1, "ham_fra1", &hamburg, &frankfurt, t1530.hour, t1530.minute, t1630.hour, t1630.minute);
     initFlightPath(&FRA_HUC, "fra_huc", &frankfurt, &munich, t1830.hour, t1830.minute, t2030.hour, t2030.minute);
+    initFlightPath(&MUC_HAM2, "muc_ham2", &munich, &hamburg, t2045.hour, t2045.minute, t2200.hour, t2200.minute);
     initFlightPath(&HAM_MUC, "ham_muc", &hamburg, &munich, t2230.hour, t2230.minute, t2330.hour, t2330.minute);
-    initFlightPath(&MUC_DUS, "muc_dus", &munich, &dusseldorf, t0300.hour, t0300.minute, t0415.hour, t0415.minute);
+    initFlightPath(&MUC_DUS1, "muc_dus1", &munich, &dusseldorf, t0300.hour, t0300.minute, t0415.hour, t0415.minute);
     initFlightPath(&DUS_BER, "dus_ber", &dusseldorf, &berlin, t0800.hour, t0800.minute, t1000.hour, t1000.minute);
     initFlightPath(&BER_CGN, "ber_cgn", &berlin, &cologne, t1012.hour, t1012.minute, t1015.hour, t1015.minute);
-    initFlightPath(&CGN_MUC, "cgn_muc", &cologne, &munich, t1300.hour, t1300.minute, t1310.hour, t1310.minute);
-    initFlightPath(&MUC_DUS, "muc_dus", &munich, &dusseldorf, t2145.hour, t2145.minute, t2330.hour, t2330.minute);
-    initFlightPath(&HAM_STR, "ham_str", &hamburg, &stuttgart, t1500.hour, t1500.minute, t1512.hour, t1512.minute);
-    initFlightPath(&STR_BER, "str_ber", &stuttgart, &berlin, t1530.hour, t1530.minute, t1630.hour, t1630.minute);
-    initFlightPath(&BER_FRA, "ber_fra", &berlin, &frankfurt, t1700.hour, t1700.minute, t1800.hour, t1800.minute);
+    initFlightPath(&CGN_MUC, "cgn_muc", &cologne, &munich, t1800.hour, t1800.minute, t2030.hour, t2030.minute);
+    initFlightPath(&MUC_DUS2, "muc_dus2", &munich, &dusseldorf, t2145.hour, t2145.minute, t2330.hour, t2330.minute);
+    initFlightPath(&HAM_STR, "ham_str", &hamburg, &stuttgart, t0800.hour, t0800.minute, t1512.hour, t1512.minute);
+    initFlightPath(&STR_BER, "str_ber", &stuttgart, &berlin, t1015.hour, t1015.minute, t1300.hour, t1300.minute);
+    initFlightPath(&BER_FRA, "ber_fra", &berlin, &frankfurt, t1310.hour, t1310.minute, t1500.hour, t1500.minute);
     initFlightPath(&FRA_HAM, "fra_ham", &frankfurt, &hamburg, t1512.hour, t1512.minute, t1700.hour, t1700.minute);
-    initFlightPath(&HAM_STR, "ham_fra", &hamburg, &frankfurt, t2200.hour, t2230.minute, t2400.hour, t2400.minute);
+    initFlightPath(&HAM_FRA2, "ham_fra2", &hamburg, &frankfurt, t2200.hour, t2200.minute, t2400.hour, t2400.minute);
 
+    Airplane a380, a320, b747;
 
+    FlightPath a380_flightpaths[] = {MUC_HAM1, HAM_FRA1, FRA_HUC, MUC_HAM2, HAM_MUC};
+    FlightPath a320_flightpaths[] = {MUC_DUS1, DUS_BER, BER_CGN, CGN_MUC, MUC_DUS2};
+    FlightPath b747_flightpaths[] = {HAM_STR, STR_BER, BER_FRA, FRA_HAM, HAM_FRA2};
 
-for (int i = 0; i < 2;++i){
-    FlightPath MUC_HAM[i];
-initFlightPath ()
-}
-    /*08
-        // Array of airport pointers
-        Airport *airports[] = {&hamburg, &berlin, &dusseldorf, &cologne, &frankfurt, &stuttgart, &munich};
-        size_t numAirports = sizeof(airports) / sizeof(airports[0]);
+    initAirplane(&a380, "A380", "D-AIMA", &a380_flightpaths[0], sizeof(a380_flightpaths) / sizeof(a380_flightpaths[0]));
+    initAirplane(&a320, "A320", "D-AIMA", &a320_flightpaths[0], sizeof(a320_flightpaths) / sizeof(a320_flightpaths[0]));
+    initAirplane(&b747, "B747", "D-AIMA", &b747_flightpaths[0], sizeof(b747_flightpaths) / sizeof(b747_flightpaths[0]));
 
-        // Calculate the total number of flight paths
-        size_t numFlightPaths = numAirports * (numAirports - 1);
+    //   printAirplane(&a380);
+    Airline Lufthansa, EuroWings, TUIfly;
 
-        // Allocate memory for flight paths
-        FlightPath *flightPaths = (FlightPath *)malloc(numFlightPaths * sizeof(FlightPath));
-        if (flightPaths == NULL)
-        {
-            fprintf(stderr, "Memory allocation failed\n");
-            return 1;
-        }
+    initAirline(&Lufthansa, "Lufthansa", &a380, 1);
+    initAirline(&EuroWings, "EuroWings", &a320, 1);
+    initAirline(&TUIfly, "TUIfly", &b747, 1);
 
-        // Initialize flight paths
-        size_t index = 0;
-        for (size_t i = 0; i < numAirports; ++i)
-        {
-            for (size_t j = 0; j < numAirports; ++j)
-            {
-                if (i != j)
-                {
-                    char flightPathName[32];
-                    snprintf(flightPathName, 32, "%s-%s", airports[i]->iata, airports[j]->iata);
-                    printf("Pfad: %s\n", flightPathName);                                                       // Correct way to use printf                initFlightPath(&flightPaths[index], flightPathName, airports[i], airports[j], 8, 0, 10, 0); // Example times
-                    initFlightPath(&flightPaths[index], flightPathName, airports[i], airports[j], 8, 0, 10, 0); // Example times
-                    index++;
-                }
-            }
-        }
+    // printAirline(&Lufthansa);
+    FMS section1, section2, section3;
+    initFMS(&section1, &Lufthansa, 1);
+    initFMS(&section2, &EuroWings, 1);
 
-        // printFlightPaths(flightPaths, numFlightPaths);
+    initFMS(&section3, &TUIfly, 1);
 
-        Airplane a380, a320, b747;
-        initAirplane(&a380, "D-AIMA")
-
-
-        Airline lufthansa, eurowings, tuifly;
-
-        initAirplane(&lufthansa)
-
-
-        • Lufthansa
-        • EuroWings
-        • TUIfly
-
-
-            // Print all airport information
-            printAirport(&hamburg);
-            printAirport(&berlin);
-            printAirport(&dusseldorf);
-            printAirport(&cologne);
-            printAirport(&frankfurt);
-            printAirport(&stuttgart);
-            printAirport(&munich);
-
-
-    free(flightPaths);
-  */
-
-    printf("data input\n");
+    // Generate and print the time table
+    Generate_Time_Table(&section1);
 
     return 0;
 }

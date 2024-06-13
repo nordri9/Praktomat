@@ -33,7 +33,7 @@ typedef struct FlightPath {
 
 typedef struct Airplane {
     char airplaneName[32];
-    char airVehicleRegestriation[16];
+    char airVehicleRegestriation[32];
     struct FlightPath *pFlightPath;
     unsigned int cntFlightPath;
 }Airplane;
@@ -59,9 +59,13 @@ void initAirline(Airline *al, char *airlineName, Airplane *pAirplane, unsigned i
 void initFMS(FMS *fms, Airline *pAirline, unsigned int cntAirline);
 
 
-void printCoordinate(const Coordinate *c);
-void printAirport(const Airport *a);
-void printTime(const Time *t);
+void printCoordinate(Coordinate *c);
+void printTime(Time *t);
+void printAirport(Airport *a);
+void printFlightPath(FlightPath *fp);
+void printAirplane(Airplane *aplane);
+void printAirline(Airline *al);
+void Generate_Time_Table(FMS *pFMS);
 
 int datatest();
 #endif
