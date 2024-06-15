@@ -117,3 +117,21 @@ void Generate_Time_Table(FMS *pFMS)
     printAirline(&pFMS->pAirline[i]);
   }
 }
+
+void Generate_Distance_Table(FMS *pFMS)
+{
+  for (unsigned int i = 0; i < pFMS->cntAirline; i++)
+  {
+
+    printf("   Airline|Flight No.|from|  to|Distance\n");
+    printf("----------|----------|----|----|--------\n");
+    printAirline(&pFMS->pAirline[i]);
+
+
+  }
+}
+void Generate_Duration_Table(FMS *pFMS)
+{
+  printf("   Airline|Flight No.|from|  to|Duration\n");
+  printf("----------|----------|----|----|--------\n");
+}

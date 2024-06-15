@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int fms_data_input()
+FMS *fms_data_input()
 {
 
     Airport hamburg, berlin, dusseldorf, cologne, frankfurt, stuttgart, munich;
@@ -79,9 +79,16 @@ int fms_data_input()
 
     Airline airlines[] = {Lufthansa, EuroWings, TUIFly};
 
-    FMS section1;
-    initFMS(&section1, airlines, 3);
+    FMS *section = (FMS *)malloc(sizeof(FMS));
+    if (section == NULL)
+    {
+        fprintf(stderr, "Memory allocation failed\n");
+        exit(EXIT_FAILURE);
+    }
+    initFMS(section, airlines, 3);
 
-    Generate_Time_Table(&section1);
-    return 0;
+    Generate_Time_Table(section);
+
+    Generate_Distance_Table(section);
+    return section;
 }

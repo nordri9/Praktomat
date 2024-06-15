@@ -53,7 +53,7 @@ typedef struct FMS
     unsigned int cntAirline;
 } FMS;
 
-int fms_data_input();
+FMS* fms_data_input();
 
 void initCoordinate(Coordinate *c, double degree, double minute, double second);
 void initAirport(Airport *a, const char *icao, const char *iata, double latDegree, double latMinute, double latSecond, double lonDegree, double lonMinute, double lonSecond, float heightAMSL);
@@ -70,5 +70,10 @@ void printAirport(Airport *a);
 void printFlightPath(FlightPath *fp);
 void printAirplane(Airplane *aplane, int i, char airlineName[32]);
 void printAirline(Airline *al);
+
+
 void Generate_Time_Table(FMS *pFMS);
+void Generate_Distance_Table(FMS * pFMS);
+void Generate_Duration_Table(FMS * pFMS);
+
 #endif
