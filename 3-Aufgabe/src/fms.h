@@ -10,8 +10,8 @@ typedef struct Coordinate
 
 typedef struct Airport
 {
-    char icao[5];
-    char iata[4];
+    char icao[10];
+    char iata[10];
     struct Coordinate latitude;
     struct Coordinate longitude;
     float heightAMSL;
@@ -53,7 +53,7 @@ typedef struct FMS
     unsigned int cntAirline;
 } FMS;
 
-FMS* fms_data_input();
+FMS fms_data_input();
 
 void initCoordinate(Coordinate *c, double degree, double minute, double second);
 void initAirport(Airport *a, const char *icao, const char *iata, double latDegree, double latMinute, double latSecond, double lonDegree, double lonMinute, double lonSecond, float heightAMSL);
@@ -63,17 +63,23 @@ void initAirplane(Airplane *aplane, char *airplaneName, char *airVehicleRegestri
 void initAirline(Airline *al, char *airlineName, Airplane *pAirplane, unsigned int cntAirplane);
 void initFMS(FMS *fms, Airline *pAirline, unsigned int cntAirline);
 
-//void printCoordinate(Coordinate *c);
+// void printCoordinate(Coordinate *c);
 void printDepartureTime(Time *t);
 void printArrivalTime(Time *t);
-void printAirport(Airport *a);
-void printFlightPath(FlightPath *fp);
-void printAirplane(Airplane *aplane, int i, char airlineName[32]);
-void printAirline(Airline *al);
 
+double calculateDegree(double degrees, double minutes, double seconds);
+double sinDeg(double degrees);
+double cosDeg(double degrees);
+double calculate_distance(Airport *DepartureAirport, Airport *ArrivalAirport);
+void printDistance(Airport *DepartureAirport, Airport *ArrivalAirport);
+
+void printAirport(Airport *a);
+void printFlightPath(FlightPath *fp, unsigned char table_type);
+void printAirplane(Airplane *aplane, char airlineName[32], unsigned char table_type);
+void printAirline(Airline *al, unsigned char table_type);
 
 void Generate_Time_Table(FMS *pFMS);
-void Generate_Distance_Table(FMS * pFMS);
-void Generate_Duration_Table(FMS * pFMS);
+void Generate_Distance_Table(FMS *pFMS);
+void Generate_Duration_Table(FMS *pFMS);
 
 #endif

@@ -2,7 +2,10 @@
   "files.associations": {
     "number_to_text.h": "c",
     "math.h": "c",
-    "stdlib.h": "c"
+    "stdlib.h": "c",
+    "stdio.h": "c",
+    "fms.h": "c",
+    "iterator": "c"
   },
   "C_Cpp_Runner.msvcBatchPath": "",
   "C_Cpp_Runner.cCompilerPath": "gcc",
