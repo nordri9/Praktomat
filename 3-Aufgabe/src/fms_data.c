@@ -8,7 +8,7 @@ FMS fms_data_input()
   static Airport hamburg, berlin, dusseldorf, cologne, frankfurt, stuttgart, munich;
 
   initAirport(&hamburg, "EDDH", "HAM", 53, 37, 49, 9, 59, 18, 16);
-  initAirport(&berlin, "EDDB", "BER", 52, 21, 14, 13, 30, 2, 48);
+  initAirport(&berlin, "EDDB", "BER", 52, 21, 44, 13, 30, 2, 48);
   initAirport(&dusseldorf, "EDDL", "DUS", 51, 16, 51, 6, 45, 26, 45);
   initAirport(&cologne, "EDDK", "CGN", 50, 51, 57, 7, 8, 34, 92);
   initAirport(&frankfurt, "EDDF", "FRA", 50, 1, 59, 8, 34, 14, 111);
@@ -75,7 +75,7 @@ FMS fms_data_input()
 
   initAirline(&Lufthansa, "Lufthansa", &a380, 1);
   initAirline(&EuroWings, "EuroWings", &a320, 1);
-  initAirline(&TUIFly, "   TUIFly", &b747, 1);
+  initAirline(&TUIFly, "TUIFly", &b747, 1);
 
   Airline airlines[] = {Lufthansa, EuroWings, TUIFly};
 
@@ -84,8 +84,8 @@ FMS fms_data_input()
   initFMS(&fms, airlines, sizeof(airlines) / sizeof(airlines[0]));
 
   Generate_Time_Table(&fms);
+  Generate_Duration_Table(&fms);
   Generate_Distance_Table(&fms);
- // Generate_Duration_Table(&fms);
 
   return fms; // Return the address of the  variable
 }

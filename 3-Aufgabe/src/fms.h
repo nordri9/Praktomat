@@ -75,8 +75,8 @@ void printDistance(Airport *DepartureAirport, Airport *ArrivalAirport);
 
 void printAirport(Airport *a);
 void printFlightPath(FlightPath *fp, unsigned char table_type);
-void printAirplane(Airplane *aplane, char airlineName[32], unsigned char table_type);
-void printAirline(Airline *al, unsigned char table_type);
+void printAirplane(Airplane *aplane, char airlineName[32], unsigned char table_type, unsigned int cntAirline);
+void printAirline(Airline *al, unsigned char table_type, unsigned int cntAirline);
 
 void Generate_Time_Table(FMS *pFMS);
 void Generate_Distance_Table(FMS *pFMS);
