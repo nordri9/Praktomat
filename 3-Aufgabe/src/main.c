@@ -1,14 +1,15 @@
+/*
+ * The code was written with modularity and scalability in mind, as in a real flight management system. It may not be the most effective solution for the task at hand.
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include "fms.h"
+
+// Main function to execute the FMS data input process.
 int main()
 {
-    /*
-     FMS qFMS; // Declare qFMS as a variable of type FMS
-     qFMS = fms_data_input(); // Assign the structure returned by fms_data_input()
-     Generate_Time_Table(&qFMS); // Pass the address of qFMS to the function
- */
-
     fms_data_input();
+
     return 0;
 }

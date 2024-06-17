@@ -1,69 +1,70 @@
 #ifndef DATA_STRUCTURES_H
 #define DATA_STRUCTURES_H
 
-typedef struct Coordinate
+typedef struct
 {
     double degree;
     double minute;
     double second;
 } Coordinate;
 
-typedef struct Airport
+typedef struct
 {
-    char icao[10];
-    char iata[10];
-    struct Coordinate latitude;
-    struct Coordinate longitude;
+    char icao[5]; // 4 characters + null terminator
+    char iata[4]; // 3 characters + null terminator
+    Coordinate latitude;
+    Coordinate longitude;
     float heightAMSL;
 } Airport;
 
-typedef struct Time
+typedef struct
 {
     unsigned char hour;
     unsigned char minute;
 } Time;
 
-typedef struct FlightPath
+typedef struct
 {
     char flightPathName[32];
-    struct Airport *pDepartureAirport;
-    struct Airport *pArrivalAirport;
-    struct Time departure;
-    struct Time arrival;
+    Airport *pDepartureAirport;
+    Airport *pArrivalAirport;
+    Time departure;
+    Time arrival;
 } FlightPath;
 
-typedef struct Airplane
+typedef struct
 {
     char airplaneName[32];
     char airVehicleRegestriation[32];
-    struct FlightPath *pFlightPath;
+    FlightPath *pFlightPath;
     unsigned int cntFlightPath;
 } Airplane;
 
-typedef struct Airline
+typedef struct
 {
     char airlineName[32];
-    struct Airplane *pAirplane;
+    Airplane *pAirplane;
     unsigned int cntAirplane;
 } Airline;
 
-typedef struct FMS
+typedef struct
 {
-    struct Airline *pAirline;
+    Airline *pAirline;
     unsigned int cntAirline;
 } FMS;
 
-FMS fms_data_input();
+
+void fms_data_input();
 
 void initCoordinate(Coordinate *c, double degree, double minute, double second);
 void initAirport(Airport *a, const char *icao, const char *iata, double latDegree, double latMinute, double latSecond, double lonDegree, double lonMinute, double lonSecond, float heightAMSL);
 void initTime(Time *t, unsigned char hour, unsigned char minute);
 void initFlightPath(FlightPath *fp, const char *flightPathName, Airport *pDepartureAirport, Airport *pArrivalAirport, unsigned char depHour, unsigned char depMinute, unsigned char arrHour, unsigned char arrMinute);
-void initAirplane(Airplane *aplane, char *airplaneName, char *airVehicleRegestriation, FlightPath *pFlightPath, unsigned int cntFlightPath);
-void initAirline(Airline *al, char *airlineName, Airplane *pAirplane, unsigned int cntAirplane);
+void initAirplane(Airplane *aplane, const char *airplaneName, const char *airVehicleRegestriation, FlightPath *pFlightPath, unsigned int cntFlightPath);
+void initAirline(Airline *al, const char *airlineName, Airplane *pAirplane, unsigned int cntAirplane);
 void initFMS(FMS *fms, Airline *pAirline, unsigned int cntAirline);
 
-// void printCoordinate(Coordinate *c);
+void printCoordinate(Coordinate *c);
 void printDepartureTime(Time *t);
 void printArrivalTime(Time *t);
 

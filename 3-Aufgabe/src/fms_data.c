@@ -2,10 +2,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-FMS fms_data_input()
+// Initializes airports, times, flight paths, airplanes, airlines, and FMS for flight management system.
+void fms_data_input()
 {
 
-  static Airport hamburg, berlin, dusseldorf, cologne, frankfurt, stuttgart, munich;
+  Airport hamburg, berlin, dusseldorf, cologne, frankfurt, stuttgart, munich;
 
   initAirport(&hamburg, "EDDH", "HAM", 53, 37, 49, 9, 59, 18, 16);
   initAirport(&berlin, "EDDB", "BER", 52, 21, 44, 13, 30, 2, 48);
@@ -15,7 +16,7 @@ FMS fms_data_input()
   initAirport(&stuttgart, "EDDS", "STR", 48, 41, 24, 9, 13, 19, 389);
   initAirport(&munich, "EDDM", "MUC", 48, 21, 14, 11, 47, 10, 453);
 
-  static Time t0300, t0415, t0800, t1000, t1012, t1015, t1130, t1300, t1310, t1315, t1430, t1500, t1512, t1530, t1630, t1700, t1800, t1830, t2030, t2045, t2145, t2200, t2230, t2330, t2400;
+  Time t0300, t0415, t0800, t1000, t1012, t1015, t1130, t1300, t1310, t1315, t1430, t1500, t1512, t1530, t1630, t1700, t1800, t1830, t2030, t2045, t2145, t2200, t2230, t2330, t2400;
 
   initTime(&t0300, 3, 0);
   initTime(&t0415, 4, 15);
@@ -43,7 +44,7 @@ FMS fms_data_input()
   initTime(&t2330, 23, 30);
   initTime(&t2400, 24, 0);
 
-  static FlightPath MUC_HAM1, HAM_FRA1, FRA_HUC, MUC_HAM2, HAM_MUC, MUC_DUS1, DUS_BER, BER_CGN, CGN_MUC, MUC_DUS2, HAM_STR, STR_BER, BER_FRA, FRA_HAM, HAM_FRA2;
+  FlightPath MUC_HAM1, HAM_FRA1, FRA_HUC, MUC_HAM2, HAM_MUC, MUC_DUS1, DUS_BER, BER_CGN, CGN_MUC, MUC_DUS2, HAM_STR, STR_BER, BER_FRA, FRA_HAM, HAM_FRA2;
 
   initFlightPath(&MUC_HAM1, "LH 2147", &munich, &hamburg, t1130.hour, t1130.minute, t1430.hour, t1430.minute);
   initFlightPath(&HAM_FRA1, "LH 2147", &hamburg, &frankfurt, t1530.hour, t1530.minute, t1630.hour, t1630.minute);
@@ -61,7 +62,7 @@ FMS fms_data_input()
   initFlightPath(&FRA_HAM, "X3 2174", &frankfurt, &hamburg, t1512.hour, t1512.minute, t1700.hour, t1700.minute);
   initFlightPath(&HAM_FRA2, "X3 2174", &hamburg, &frankfurt, t2200.hour, t2200.minute, t2400.hour, t2400.minute);
 
-  static Airplane a380, a320, b747;
+  Airplane a380, a320, b747;
 
   FlightPath a380_flightpaths[] = {MUC_HAM1, HAM_FRA1, FRA_HUC, MUC_HAM2, HAM_MUC};
   FlightPath a320_flightpaths[] = {MUC_DUS1, DUS_BER, BER_CGN, CGN_MUC, MUC_DUS2};
@@ -71,7 +72,7 @@ FMS fms_data_input()
   initAirplane(&a320, "A320", "D-AIAB", &a320_flightpaths[0], sizeof(a320_flightpaths) / sizeof(a320_flightpaths[0]));
   initAirplane(&b747, "B747", "D-ABCD", &b747_flightpaths[0], sizeof(b747_flightpaths) / sizeof(b747_flightpaths[0]));
 
-  static Airline Lufthansa, EuroWings, TUIFly;
+  Airline Lufthansa, EuroWings, TUIFly;
 
   initAirline(&Lufthansa, "Lufthansa", &a380, 1);
   initAirline(&EuroWings, "EuroWings", &a320, 1);
@@ -79,13 +80,11 @@ FMS fms_data_input()
 
   Airline airlines[] = {Lufthansa, EuroWings, TUIFly};
 
-  FMS fms;
+  FMS FMS1;
 
-  initFMS(&fms, airlines, sizeof(airlines) / sizeof(airlines[0]));
-
-  Generate_Time_Table(&fms);
-  Generate_Duration_Table(&fms);
-  Generate_Distance_Table(&fms);
-
-  return fms; // Return the address of the  variable
+  initFMS(&FMS1, airlines, sizeof(airlines) / sizeof(airlines[0]));
+  
+  Generate_Time_Table(&FMS1);
+  Generate_Duration_Table(&FMS1);
+  Generate_Distance_Table(&FMS1);
 }

@@ -1,61 +1,70 @@
 #ifndef DATA_STRUCTURES_H
 #define DATA_STRUCTURES_H
+#define MAX_STR 20
 
-typedef struct Coordinate
-{
+// Structs done like in the datastructure
+typedef struct coordinate{
     double degree;
     double minute;
     double second;
-} Coordinate;
+}Coordinate;
 
-typedef struct Airport
-{
-    char icao[5];
-    char iata[4];
-    struct Coordinate latitude;
-    struct Coordinate longitude;
+typedef struct time{
+   unsigned char hour;
+   unsigned char minute; 
+}Time;
+
+typedef struct airport{
+    char icao[MAX_STR];
+    char iata[MAX_STR];
+    Coordinate latitude;
+    Coordinate longitude;
     float heightAMSL;
-} Airport;
+}Airport;
 
-typedef struct Time
-{
-    unsigned char hour;
-    unsigned char minute;
-} Time;
+typedef struct flightPath {
+    char flightPathName[MAX_STR];
+    Airport *pDepartureAirport;
+    Airport *pArrivalAirport;
+    Time departure;
+    Time arrival;
+    }FlightPath;
 
-typedef struct FlightPath
-{
-    char flightPathName[32];
-    struct Airport *pDepartureAirport;
-    struct Airport *pArrivalAirport;
-    struct Time departure;
-    struct Time arrival;
-} FlightPath;
-
-typedef struct Airplane
-{
-    char airplaneName[32];
-    char airVehicleRegestriation[32];
-    struct FlightPath *pFlightPath;
+typedef struct airplane{
+    char airplaneName[ MAX_STR ];
+    char airVehicleRegestriation[MAX_STR];
+    FlightPath* pFlightPath[5];        //using an array to point out the different paths
     unsigned int cntFlightPath;
-} Airplane;
-
-typedef struct Airline
-{
-    char airlineName[32];
-    struct Airplane *pAirplane;
+}Airplane;
+typedef struct airline{
+    char airlineName[MAX_STR];
+    Airplane *pAirplane;    //arrays could be used aswell to facilitate multiple planes per airline
     unsigned int cntAirplane;
-} Airline;
 
-typedef struct FMS
-{
-    struct Airline *pAirline;
+}Airline;
+typedef struct fms{
+    Airline *pAirline[3];    //using an array for the three different airlines
     unsigned int cntAirline;
-} FMS;
+}FMS;
 
+
+void printCoordinate(Coordinate *c);
+void printDepartureTime(Time *t);
+void printArrivalTime(Time *t);
+
+double calculateDegree(double degrees, double minutes, double seconds);
+double sinDeg(double degrees);
+double cosDeg(double degrees);
+double calculate_distance(Airport *DepartureAirport, Airport *ArrivalAirport);
+void printDistance(Airport *DepartureAirport, Airport *ArrivalAirport);
+
+void printAirport(Airport *a);
+void printFlightPath(FlightPath *fp, unsigned char table_type);
+void printAirplane(Airplane *aplane, char airlineName[32], unsigned char table_type, unsigned int cntAirline);
+void printAirline(Airline *al, unsigned char table_type, unsigned int cntAirline);
 
 void Generate_Time_Table(FMS *pFMS);
-void Generate_Distance_Table(FMS * pFMS);
-void Generate_Duration_Table(FMS * pFMS);
+void Generate_Distance_Table(FMS *pFMS);
+void Generate_Duration_Table(FMS *pFMS);
 
 #endif

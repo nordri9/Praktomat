@@ -1,20 +1,44 @@
-run_main: ./build/fms
-	./build/fms
+# Compiler and flags
+CC = gcc
+CFLAGS = -Wall -g -I./src
+LDFLAGS = -lm
 
-./build/fms: ./build/fms.o ./build/main.o ./build/fms_data.o
-	gcc ./build/fms.o ./build/main.o ./build/fms_data.o -o ./build/fms -lm
+# Source and build directories
+SRC_DIR = ./src
+BUILD_DIR = ./build
 
-./build/fms.o: ./src/fms.c
-	gcc -Wall -g -c ./src/fms.c -o ./build/fms.o
+# Source files
+SRCS = $(wildcard $(SRC_DIR)/*.c)
 
-./build/main.o: ./src/main.c
-	gcc -Wall -g -c ./src/main.c -o ./build/main.o
+# Object files (corresponding to source files)
+OBJS = $(patsubst $(SRC_DIR)/%.c, $(BUILD_DIR)/%.o, $(SRCS))
 
-./build/fms_data.o: ./src/fms_data.c
-	gcc -Wall -g -c ./src/fms_data.c -o ./build/fms_data.o
+# Target executable
+TARGET = $(BUILD_DIR)/program
 
-build: 
-	mkdir -p build
+# Default target
+all: $(TARGET)
 
+# Rule to build the target executable
+$(TARGET): $(OBJS)
+	$(CC) $(CFLAGS) -o $@ $^ $(LDFLAGS)
+
+# Rule to build object files
+$(BUILD_DIR)/%.o: $(SRC_DIR)/%.c
+	@mkdir -p $(BUILD_DIR)
+	$(CC) $(CFLAGS) -c $< -o $@
+
+# Clean up build artifacts
 clean:
-	rm -r build
+	rm -rf $(BUILD_DIR)
+
+# Run the program
+run: $(TARGET)
+	./$(TARGET)
+
+# Debug the program with GDB
+debug: $(TARGET)
+	gdb -ex "set environment LD_LIBRARY_PATH=$(BUILD_DIR)" --args $(TARGET)
+
+# Phony targets
+.PHONY: all clean run debug
