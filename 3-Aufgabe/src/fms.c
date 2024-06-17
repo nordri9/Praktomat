@@ -430,7 +430,7 @@ void printAirline(Airline *al, unsigned char table_type, unsigned int cntAirline
 void Generate_Time_Table(FMS *pFMS)
 {
     unsigned char table_type = 0;
-    printf("   Airline|Flight No.|from|  to|Departure| pArrival|Airplane\n");
+    printf("   Airline|Flight No.|from|  to|Departure| Arrival|Airplane\n");
     printf("----------|----------|----|----|---------|--------|--------\n");
     for (unsigned int i = 0; i < pFMS->cntAirline; i++)
     {
