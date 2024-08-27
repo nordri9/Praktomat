@@ -4,8 +4,6 @@
 #include <math.h>
 #define r 6378.388 // Radius of the Earth in kilometers
 
-
-
 /**
  * Initializes a Coordinate struct with the given values.
  *
@@ -20,7 +18,6 @@ void initCoordinate(Coordinate *c, double degree, double minute, double second)
     c->minute = minute;
     c->second = second;
 }
-
 
 /**
  * Initializes an Airport struct with the given values.
@@ -49,10 +46,8 @@ void initAirport(Airport *a, const char *icao, const char *iata, double latDegre
     a->heightAMSL = heightAMSL;
 }
 
-
-
 // Initializes a Time struct with the given hour and minute values.
-// 
+//
 // Parameters:
 // - t: A pointer to the Time struct to be initialized.
 // - hour: An unsigned char representing the hour value.
@@ -62,7 +57,6 @@ void initTime(Time *t, unsigned char hour, unsigned char minute)
     t->hour = hour;
     t->minute = minute;
 }
-
 
 /**
  * Initializes a FlightPath struct with the given flight path details.
@@ -87,7 +81,6 @@ void initFlightPath(FlightPath *fp, const char *flightPathName, Airport *pDepart
     initTime(&fp->departure, depHour, depMinute);
     initTime(&fp->arrival, arrHour, arrMinute);
 }
-
 
 /**
  * Initializes an Airplane struct with the given airplane details.
@@ -140,7 +133,6 @@ void initFMS(FMS *fms, Airline *pAirline, unsigned int cntAirline)
     fms->cntAirline = cntAirline;
 }
 
-
 /**
  * Prints the details of an Airport struct.
  *
@@ -158,7 +150,7 @@ void printAirport(Airport *aport)
  */
 void printDepartureTime(Time *t)
 {
-    printf("    %02u:%02u|", t->hour, t->minute);
+    printf("%02u:%02u|", t->hour, t->minute);
 }
 
 /**
@@ -170,7 +162,6 @@ void printpArrivalTime(Time *t)
 {
     printf("   %02u:%02u|", t->hour, t->minute);
 }
-
 
 /**
  * Calculates the duration in minutes between the departure time and the arrival time.
@@ -292,9 +283,9 @@ void printDistance(Airport *DepartureAirport, Airport *pArrivalAirport)
  *
  * @param fp Pointer to the FlightPath struct representing the flight path.
  * @param table_type An unsigned char indicating the type of table to print.
- *                   0: Print flight path name, departure and arrival airports, departure and arrival times.
- *                   1: Print flight path name, departure and arrival airports, and distance between the airports.
- *                   2: Print flight path name, departure and arrival airports, and duration of the flight.
+ *   0: Print flight path name, departure and arrival airports, departure and arrival times.
+ *   1: Print flight path name, departure and arrival airports, and distance between the airports.
+ *   2: Print flight path name, departure and arrival airports, and duration of the flight.
  *
  * @return None.
  *
@@ -344,7 +335,7 @@ void printAirplane(Airplane *aplane, char airlineName[32], unsigned char table_t
         switch (cntAirline)
         {
         case 2:
-            printf("    %s|", airlineName);
+            printf("%s|", airlineName);
             break;
         default:
             printf(" %s|", airlineName);
@@ -460,11 +451,11 @@ void Generate_Distance_Table(FMS *pFMS)
 }
 
 // Generates a duration table for the given FMS (Flight Management System) structure.
-// 
+//
 // @param pFMS Pointer to the FMS structure.
-// 
+//
 // @return None.
-// 
+//
 // @throws None.
 void Generate_Duration_Table(FMS *pFMS)
 {

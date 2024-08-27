@@ -4,7 +4,8 @@
 
 #define r 6378.388
 
-float caculateDegree(char degrees, char minutes, char seconds) {
+float caculateDegree(char degrees, char minutes, char seconds)
+{
 
   float decimalDegrees = degrees + (minutes / 60.0) + (seconds / 3600.0);
   return decimalDegrees;
@@ -14,16 +15,19 @@ float sinDeg(float degrees) { return sin(degrees * M_PI / 180.0); }
 
 float cosDeg(float degrees) { return cos(degrees * M_PI / 180.0); }
 
-double DisCalc(double arrlat, double deplat, double arrlon, double deplon) {
+double DisCalc(double arrlat, double deplat, double arrlon, double deplon)
+{
   double distance =
       r * acos(sinDeg(arrlat) * sinDeg(deplat) +
                cosDeg(arrlat) * cosDeg(deplat) * cosDeg(arrlon - deplon));
   return distance;
 }
 
-int flight_distance() {
+int flight_distance()
+{
 
-  typedef struct {
+  typedef struct
+  {
     char degrees;
     char minutes;
     char seconds;
@@ -34,7 +38,8 @@ int flight_distance() {
   printf("Please enter latitude in ° ’ ” and longitude in ° ’ ” for departure "
          "and arrival: ");
 
-  for (int i = 0; i < 4; ++i) {
+  for (int i = 0; i < 4; ++i)
+  {
 
     scanf("%hhd° %hhd’ %hhd”", &coordinates_sexagesimal[i].degrees,
           &coordinates_sexagesimal[i].minutes,
@@ -43,7 +48,8 @@ int flight_distance() {
 
   float coordinates_decimal[4];
 
-  for (int i = 0; i < 4; ++i) {
+  for (int i = 0; i < 4; ++i)
+  {
 
     coordinates_decimal[i] = caculateDegree(coordinates_sexagesimal[i].degrees,
                                             coordinates_sexagesimal[i].minutes,

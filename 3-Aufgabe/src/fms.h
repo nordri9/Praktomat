@@ -53,7 +53,6 @@ typedef struct
     unsigned int cntAirline;
 } FMS;
 
-
 void fms_data_input();
 
 void initCoordinate(Coordinate *c, double degree, double minute, double second);

@@ -66,7 +66,7 @@ int generate_plot()
     // Plot fifth segment of the curve
     for (x = 25; x <= 27; x += 0.1)
     {
-      y = mirror * (5); // Function definition
+      y = mirror * (5);   // Function definition
       GnuPlotValue(x, y); // Plot the point (x, y)
     }
 

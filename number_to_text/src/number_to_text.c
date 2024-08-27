@@ -2,8 +2,10 @@
 #include <stdio.h>
 
 // Function to print words for individual digits
-void print_digits(int decimal_place) {
-  switch (decimal_place) {
+void print_digits(int decimal_place)
+{
+  switch (decimal_place)
+  {
   case 0:
     printf("ZERO ");
     break;
@@ -39,7 +41,8 @@ void print_digits(int decimal_place) {
 
 // Function to convert a number to words, and decide special input chases
 
-void convert_to_words(int number) {
+void convert_to_words(int number)
+{
 
   // Extracting hundreds, tens, and ones places
   int hundreds = number / 100;
@@ -47,13 +50,15 @@ void convert_to_words(int number) {
   int ones = number % 10;
 
   // Printing words for hundreds place if it is greater than 0
-  if (hundreds > 0) {
+  if (hundreds > 0)
+  {
     print_digits(hundreds);
   }
 
   // Printing words for tens place if it is greater than 0, or if there are
   // hundreds
-  if (tens > 0 || hundreds > 0) {
+  if (tens > 0 || hundreds > 0)
+  {
     print_digits(tens);
   }
 
@@ -62,7 +67,8 @@ void convert_to_words(int number) {
 }
 
 // function to take user input and call the conversion function
-int number_to_text() {
+int number_to_text()
+{
   int number;
 
   // Taking user input for a number between 0 and 999
@@ -70,7 +76,8 @@ int number_to_text() {
   scanf("%d", &number);
 
   // Validating the input range
-  if (number < 0 || number > 999) {
+  if (number < 0 || number > 999)
+  {
     printf("Invalid input. Please enter a number between 0 and 999.\n");
     return 1; // Returning 1 to indicate error
   }

@@ -11,22 +11,26 @@
 #define roh0_constant 1.225
 
 // Function to convert temperature from Celsius to Kelvin
-double T(int temperature) {
+double T(int temperature)
+{
   double temperature_kelvin;
   return temperature_kelvin = temperature + 273.15;
 }
 
 // Function to convert pressure from hectopascal to pascal
-unsigned int p(unsigned int pressure_hpa) {
+unsigned int p(unsigned int pressure_hpa)
+{
   unsigned int pressure_pa;
   return pressure_pa = pressure_hpa * 1e2;
 }
 
 // Function to get the height of a location based on latitude and longitude
-int location_height(char latitude, char longitude) {
+int location_height(char latitude, char longitude)
+{
 
   // Structure to represent location with latitude, longitude, and height
-  typedef struct {
+  typedef struct
+  {
     char latitude;
     char longitude;
     int height;
@@ -37,9 +41,11 @@ int location_height(char latitude, char longitude) {
       {48, 9, 388}, {52, 13, 37}, {48, 11, 453}, {50, 8, 110}};
 
   // Iterate through the locations and return the height if coordinates match
-  for (int i = 0; i < 4; ++i) {
+  for (int i = 0; i < 4; ++i)
+  {
     if (latitude == locations[i].latitude &&
-        longitude == locations[i].longitude) {
+        longitude == locations[i].longitude)
+    {
       return locations[i].height;
     }
   }
@@ -51,7 +57,8 @@ int location_height(char latitude, char longitude) {
 
 // Function to calculate stagnation temperature based on location and initial temperature
 double stagnation_temperature(char latitude, char longitude,
-                              int temperature_celsius) {
+                              int temperature_celsius)
+{
 
   // Stagnation temperature calculation using the provided formula
   double T0 = T(temperature_celsius) +
@@ -63,7 +70,8 @@ double stagnation_temperature(char latitude, char longitude,
 // Function to calculate stagnation pressure based on location, pressure, and
 // initial temperature
 double stagnation_pressure(unsigned int pressure_hpa, char latitude,
-                           char longitude, int temperature_celsius) {
+                           char longitude, int temperature_celsius)
+{
   // Stagnation pressure calculation using the provided formula
   double roh0 =
       p(pressure_hpa) /
@@ -74,7 +82,8 @@ double stagnation_pressure(unsigned int pressure_hpa, char latitude,
 
 // Function to calculate actual air density based on location, pressure, and initial temperature
 double actual_density(unsigned int pressure_hpa, char latitude, char longitude,
-                      int temperature_celsius) {
+                      int temperature_celsius)
+{
   // Actual air density calculation using the provided formula
   double roh =
       stagnation_pressure(pressure_hpa, latitude, longitude,
@@ -89,7 +98,8 @@ double actual_density(unsigned int pressure_hpa, char latitude, char longitude,
 
 // Function to calculate density altitude based on location, pressure, and initial temperature
 double density_altitude(unsigned int pressure_hpa, char latitude,
-                        char longitude, int temperature_celsius) {
+                        char longitude, int temperature_celsius)
+{
   // Density altitude calculation using the provided formula
   double H_of_roh = (pow((actual_density(pressure_hpa, latitude, longitude,
                                          temperature_celsius) /
@@ -102,7 +112,8 @@ double density_altitude(unsigned int pressure_hpa, char latitude,
 }
 
 // Function to perform atmospheric calculations
-int atmospheric_calculations() {
+int atmospheric_calculations()
+{
 
   char latitude, longitude;
   int temperature_celsius;
