@@ -1,36 +1,29 @@
-# Compiler to use
-CC = gcc
-
-# Compiler flags
-CFLAGS = -Wall -Wextra -Werror
-
-# Target executable
-TARGET = jukebox
-
-# Source files directory
+# Directories
 SRC_DIR = src
-
-# Source files
-SRC_FILES = $(SRC_DIR)/main.c
-
-# Output directory for the binary
 BIN_DIR = bin
 
-# Create the output directory if it doesn't exist
+# Compiler and flags
+CC = gcc
+CFLAGS = -Wall -Wextra -std=c11
+
+# Source files and target
+SRC_FILES = $(SRC_DIR)/main.c $(SRC_DIR)/jukebox.c
+TARGET = $(BIN_DIR)/jukebox
+
+# Create the bin directory if it doesn't exist
 $(BIN_DIR):
 	mkdir -p $(BIN_DIR)
 
-# Build the target executable
-$(BIN_DIR)/$(TARGET): $(SRC_FILES) | $(BIN_DIR)
-	$(CC) $(CFLAGS) -o $(BIN_DIR)/$(TARGET) $(SRC_FILES)
+# Build the program
+$(TARGET): $(BIN_DIR) $(SRC_FILES)
+	$(CC) $(CFLAGS) -o $(TARGET) $(SRC_FILES)
 
 # Run the program
-run: $(BIN_DIR)/$(TARGET)
-	./$(BIN_DIR)/$(TARGET)
+.PHONY: run
+run: $(TARGET)
+	./$(TARGET)
 
-# Clean up generated files
+# Clean the build
+.PHONY: clean
 clean:
 	rm -rf $(BIN_DIR)
-
-# Phony targets
-.PHONY: clean run
