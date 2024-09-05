@@ -4,7 +4,7 @@
 
 int main()
 {
-    Shuttle *shuttle_list = load_shuttle_data("src/shuttle_data.txt");
+    Shuttle *shuttle_list = load_shuttle_data("shuttle_data.txt");
 
     if (shuttle_list == NULL)
     {
