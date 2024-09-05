@@ -138,7 +138,7 @@ void print_shuttles(Shuttle *head)
         return;
 
     // Print table header with aligned columns
-    printf("%-12s | %-11s | %-19s | %-10s | %-10s\n",
+    printf("%-12s | %-11s | %-19s | %-10s | %s\n",
            "Missions-Nr.", "Start-Datum", "Missionsbezeichnung", " Orbiter", "Startrampe");
     printf("-------------------------------------------------------------------------\n");
 
@@ -146,7 +146,7 @@ void print_shuttles(Shuttle *head)
     while (current != NULL)
     {
         // Print each shuttle's information with formatted columns
-        printf("%-12d | %-11s | %-19s | %-10s | %-10s\n",
+        printf("%-12d | %-11s | %-19s | %-10s | %s\n",
                current->mission_number,
                current->start_date,
                current->mission_designation,
