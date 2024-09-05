@@ -7,8 +7,8 @@ CC = gcc
 CFLAGS = -Wall -Wextra -std=c11
 
 # Source files and target
-SRC_FILES = $(SRC_DIR)/main.c $(SRC_DIR)/shuttle_sorting.c
-TARGET = $(BIN_DIR)/shuttle_sorting
+SRC_FILES = $(SRC_DIR)/main.c $(SRC_DIR)/shuttle_sort.c
+TARGET = $(BIN_DIR)/shuttle_sort
 
 # Create the bin directory if it doesn't exist
 $(BIN_DIR):
