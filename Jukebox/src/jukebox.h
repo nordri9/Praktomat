@@ -5,6 +5,8 @@
 #include <stdlib.h>
 #include <string.h>
 
-void Track_Search(FILE *file, const char *searchString);
+// Function prototype for Track_Search
+// Searches the file for tracks or artists matching the search string
+void Track_Search(FILE *file, const char *searchString, const unsigned int max_line_length);
 
-#endif // jukebox_H
+#endif

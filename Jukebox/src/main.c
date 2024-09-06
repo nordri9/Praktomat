@@ -3,43 +3,37 @@
 #include <string.h>
 #include "jukebox.h"
 
+#define MAX_LINE_LENGTH 256 // Define the maximum length of a line in the text file
 
-#define MAX_LINE_LENGTH 256
+int main()
+{
+    char fileName[MAX_LINE_LENGTH];     // Buffer to store the file name entered by the user
+    char searchString[MAX_LINE_LENGTH]; // Buffer to store the search string entered by the user
+    FILE *file;                         // File pointer to handle the file
 
-// Function prototype
-void Track_Search(FILE *file, const char *searchString);
-
-int main() {
-    char fileName[MAX_LINE_LENGTH];
-    char searchString[MAX_LINE_LENGTH];
-    FILE *file;
-
-    // Prompt the user for the file name
+    // Prompt the user to enter the name of the jukebox file
     printf("Please enter a Jukebox file name: ");
-    fgets(fileName, MAX_LINE_LENGTH, stdin);
-    // Remove newline character from fileName
-    fileName[strcspn(fileName, "\n")] = 0;
+    fgets(fileName, MAX_LINE_LENGTH, stdin); // Read the file name from user input
+    fileName[strcspn(fileName, "\n")] = 0;   // Remove the trailing newline character from the input
 
-    // Open the file
+    // Try to open the file in read mode
     file = fopen(fileName, "r");
-    if (file == NULL) {
+    if (file == NULL)
+    { // Check if the file could not be opened
         printf("Error: Could not open file %s\n", fileName);
-        return 1;
+        return 1; // Return with an error code
     }
 
-    // Prompt the user for the search string
+    // Prompt the user to enter the search string (e.g., artist or track name)
     printf("Please enter a search string: ");
-    fgets(searchString, MAX_LINE_LENGTH, stdin);
-    // Remove newline character from searchString
-    searchString[strcspn(searchString, "\n")] = 0;
+    fgets(searchString, MAX_LINE_LENGTH, stdin);   // Read the search string from user input
+    searchString[strcspn(searchString, "\n")] = 0; // Remove the trailing newline character from the input
 
-    // Perform the search
-    Track_Search(file, searchString);
+    // Call the Track_Search function to search for the specified string in the file
+    Track_Search(file, searchString, MAX_LINE_LENGTH);
 
-    // Close the file
+    // Close the file after search is complete
     fclose(file);
 
-    return 0;
+    return 0; // Return success
 }
-
-

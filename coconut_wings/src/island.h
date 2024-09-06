@@ -31,4 +31,7 @@ void print_tour(const Tour *tour, int tour_number);
 Tour *initialize_tour(int tour_number);
 void initialize_all_tours();
 
+void Input_Island(Island * thelsland, char* name, Time open, Time closed);
+void Output_Island(Island * thelsland);;
+
 #endif // island_H
