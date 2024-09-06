@@ -1,32 +1,28 @@
-# Directories
-SRC_DIR = src
-BIN_DIR = bin
-
-# Compiler and flags
 CC = gcc
-CFLAGS = -Wall -Wextra -std=c11
+CFLAGS = -Wall -Werror -g
+SRC_DIR = ./src
+OBJ_DIR = ./obj
+TARGET = coconut_wings
 
-# Source files and target
-SRC_FILES = $(SRC_DIR)/main.c $(SRC_DIR)/node.c $(SRC_DIR)/island.c
-TARGET = $(BIN_DIR)/island
+SOURCES = $(SRC_DIR)/main.c $(SRC_DIR)/island.c $(SRC_DIR)/node.c
+OBJECTS = $(OBJ_DIR)/main.o $(OBJ_DIR)/island.o $(OBJ_DIR)/node.o
 
-# Header files (for dependency tracking)
-HDR_FILES = $(SRC_DIR)/node.h $(SRC_DIR)/island.h
+# Rule to create object directory
+$(OBJ_DIR):
+	mkdir -p $(OBJ_DIR)
 
-# Create the bin directory if it doesn't exist
-$(BIN_DIR):
-	mkdir -p $(BIN_DIR)
+# Rule to build the executable
+$(TARGET): $(OBJ_DIR) $(OBJECTS)
+	$(CC) $(OBJECTS) -o $(TARGET)
 
-# Build the program
-$(TARGET): $(BIN_DIR) $(SRC_FILES) $(HDR_FILES)
-	$(CC) $(CFLAGS) -o $(TARGET) $(SRC_FILES)
+# Compile each source file into an object file
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
+# Clean up the build
+clean:
+	rm -rf $(OBJ_DIR) $(TARGET)
 
 # Run the program
-.PHONY: run
 run: $(TARGET)
 	./$(TARGET)
-
-# Clean the build
-.PHONY: clean
-clean:
-	rm -rf $(BIN_DIR)
