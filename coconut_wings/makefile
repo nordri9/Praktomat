@@ -7,15 +7,18 @@ CC = gcc
 CFLAGS = -Wall -Wextra -std=c11
 
 # Source files and target
-SRC_FILES = $(SRC_DIR)/main.c $(SRC_DIR)/coconut_wings.c
+SRC_FILES = $(SRC_DIR)/main.c $(SRC_DIR)/node.c $(SRC_DIR)/island.c
 TARGET = $(BIN_DIR)/coconut_wings
+
+# Header files (for dependency tracking)
+HDR_FILES = $(SRC_DIR)/node.h $(SRC_DIR)/island.h
 
 # Create the bin directory if it doesn't exist
 $(BIN_DIR):
 	mkdir -p $(BIN_DIR)
 
 # Build the program
-$(TARGET): $(BIN_DIR) $(SRC_FILES)
+$(TARGET): $(BIN_DIR) $(SRC_FILES) $(HDR_FILES)
 	$(CC) $(CFLAGS) -o $(TARGET) $(SRC_FILES)
 
 # Run the program
