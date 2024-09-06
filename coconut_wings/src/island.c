@@ -1,18 +1,119 @@
-#include <stdio.h>
-#include <string.h>
 #include "island.h"
 
-void Input_Island(Island *theIsland, char* name, int openHour, int openMinute, int closeHour, int closeMinute) {
-    strcpy(theIsland->name, name);
-    theIsland->openHour = openHour;
-    theIsland->openMinute = openMinute;
-    theIsland->closeHour = closeHour;
-    theIsland->closeMinute = closeMinute;
+// Create a new Island
+Island *create_island(const char *name, const char *opening_hours)
+{
+    Island *new_island = (Island *)malloc(sizeof(Island));
+    if (new_island == NULL)
+    {
+        printf("Memory allocation error\n");
+        exit(1);
+    }
+    strcpy(new_island->name, name);
+    strcpy(new_island->opening_hours, opening_hours);
+    new_island->prev = NULL;
+    new_island->next = NULL;
+    return new_island;
 }
 
-void Output_Island(Island *theIsland) {
+// Add an Island to a Tour
+void add_island_to_tour(Tour *tour, Island *island)
+{
+    if (tour->head == NULL)
+    {
+        tour->head = island;
+        tour->tail = island;
+    }
+    else
+    {
+        tour->tail->next = island;
+        island->prev = tour->tail;
+        tour->tail = island;
+    }
+}
+
+// Create a new Tour
+Tour *create_tour()
+{
+    Tour *new_tour = (Tour *)malloc(sizeof(Tour));
+    if (new_tour == NULL)
+    {
+        printf("Memory allocation error\n");
+        exit(1);
+    }
+    new_tour->head = NULL;
+    new_tour->tail = NULL;
+    return new_tour;
+}
+
+// Free the memory used by a Tour
+void free_tour(Tour *tour)
+{
+    Island *current = tour->head;
+    while (current != NULL)
+    {
+        Island *next = current->next;
+        free(current);
+        current = next;
+    }
+    free(tour);
+}
+
+// Print the information about a Tour
+void print_tour(const Tour *tour, int tour_number)
+{
     printf("---------------------------------------------------\n");
-    printf("Island : %s\n", theIsland->name);
-    printf("Opening hours: %02d:%02d - %02d:%02d\n", theIsland->openHour, theIsland->openMinute, theIsland->closeHour, theIsland->closeMinute);
+    printf("---------------- Tour %d ---------------------------\n", tour_number);
     printf("---------------------------------------------------\n");
+
+    Island *current = tour->head;
+    while (current != NULL)
+    {
+        printf("---------------------------------------------------\n");
+        printf("Island : %s\n", current->name);
+        printf("Opening hours: %s\n", current->opening_hours);
+        current = current->next;
+    }
+
+    printf("---------------------------------------------------\n");
+    printf("End\n");
+}
+
+// Initialize a specific Tour based on the tour number
+Tour *initialize_tour(int tour_number)
+{
+    Tour *tour = create_tour();
+
+    switch (tour_number)
+    {
+    case 1:
+        add_island_to_tour(tour, create_island("Amity Island", "09:00 - 17:00"));
+        add_island_to_tour(tour, create_island("Craggy Island", "09:00 - 16:00"));
+        add_island_to_tour(tour, create_island("Isla Nubar", "07:00 - 12:00"));
+        add_island_to_tour(tour, create_island("Amity Island", "09:00 - 17:00"));
+        break;
+    case 2:
+        add_island_to_tour(tour, create_island("Skull Island", "08:00 - 17:30"));
+        add_island_to_tour(tour, create_island("Craggy Island", "09:00 - 16:00"));
+        add_island_to_tour(tour, create_island("Isla Nubar", "07:00 - 12:00"));
+        add_island_to_tour(tour, create_island("Skull Island", "08:00 - 17:30"));
+        break;
+    case 3:
+        add_island_to_tour(tour, create_island("Shutter Island", "08:00 - 20:00"));
+        add_island_to_tour(tour, create_island("Skull Island", "08:00 - 17:30"));
+        add_island_to_tour(tour, create_island("Shutter Island", "08:00 - 20:00"));
+        break;
+    case 4:
+        add_island_to_tour(tour, create_island("Isla Nubar", "07:00 - 12:00"));
+        add_island_to_tour(tour, create_island("Skull Island", "08:00 - 17:30"));
+        add_island_to_tour(tour, create_island("Shutter Island", "08:00 - 20:00"));
+        add_island_to_tour(tour, create_island("Amity Island", "09:00 - 17:00"));
+        add_island_to_tour(tour, create_island("Isla Nubar", "07:00 - 12:00"));
+        break;
+    default:
+        free_tour(tour);
+        return NULL;
+    }
+
+    return tour;
 }

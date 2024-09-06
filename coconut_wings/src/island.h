@@ -1,15 +1,34 @@
-#ifndef ISLAND_H_
-#define ISLAND_H_
+#ifndef island_H
+#define island_H
 
-typedef struct {
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+// Define the structure for an Island
+typedef struct Island
+{
     char name[50];
-    int openHour;
-    int openMinute;
-    int closeHour;
-    int closeMinute;
+    char opening_hours[20];
+    struct Island *prev;
+    struct Island *next;
 } Island;
 
-void Input_Island(Island *theIsland, char* name, int openHour, int openMinute, int closeHour, int closeMinute);
-void Output_Island(Island* theIsland);
+// Define the structure for a Tour (a doubly linked list of Islands)
+typedef struct Tour
+{
+    Island *head;
+    Island *tail;
+} Tour;
 
-#endif /* ISLAND_H_ */
+// Function prototypes
+Island *create_island(const char *name, const char *opening_hours);
+void add_island_to_tour(Tour *tour, Island *island);
+Tour *create_tour();
+void free_tour(Tour *tour);
+void print_tour(const Tour *tour, int tour_number);
+
+Tour *initialize_tour(int tour_number);
+void initialize_all_tours();
+
+#endif // island_H

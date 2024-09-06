@@ -8,7 +8,7 @@ CFLAGS = -Wall -Wextra -std=c11
 
 # Source files and target
 SRC_FILES = $(SRC_DIR)/main.c $(SRC_DIR)/node.c $(SRC_DIR)/island.c
-TARGET = $(BIN_DIR)/coconut_wings
+TARGET = $(BIN_DIR)/island
 
 # Header files (for dependency tracking)
 HDR_FILES = $(SRC_DIR)/node.h $(SRC_DIR)/island.h

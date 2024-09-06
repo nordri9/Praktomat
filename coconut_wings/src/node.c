@@ -2,35 +2,35 @@
 #include <stdlib.h>
 #include "node.h"
 
-Node *Node_New(void) {
-    Node *newNode = (Node*)malloc(sizeof(Node));
-    if (newNode == NULL) {
-        printf("No memory\n");
-        return NULL;
-    }
-    newNode->next = NULL;
-    newNode->prev = NULL;
-    return newNode;
+Node * Node_New(void)
+{
+	Node * newNode;
+
+	newNode = (Node*)malloc(sizeof(Node));
+
+	if(newNode==NULL){
+		printf("No Memeory\n");
+	}else{
+		newNode->next = NULL;
+		newNode->prev = NULL;
+	}
+	return newNode;
 }
 
-void Node_Insert(Node *head, Node *newNode) {
-    if (head == NULL) {
-        head = newNode;
-    } else {
-        Node *temp = head;
-        while (temp->next != NULL) {
-            temp = temp->next;
-        }
-        temp->next = newNode;
-        newNode->prev = temp;
-    }
-}
 
-void Output_Tour(Node *tour) {
-    Node *current = tour;
-    while (current != NULL) {
-        Output_Island(current->island);
-        current = current->next;
-    }
-    printf("End\n");
+void Node_Insert(Node * theNode){
+
+	Node * newNode;
+
+	newNode = Node_New();
+	if(newNode != NULL){
+		if(theNode != NULL){
+			newNode->next = theNode->next;
+			theNode->next = newNode;
+			newNode->prev = theNode;
+			if(newNode->next != NULL)newNode->next->prev = newNode;
+		}else{
+			theNode = newNode;
+		}
+	}
 }
